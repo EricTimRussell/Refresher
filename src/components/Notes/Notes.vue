@@ -10,15 +10,14 @@
     </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item">Delete</a>
+      <a @click.prevent="handleDelete" class="card-footer-item">Delete</a>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
-
 // imports
+import { computed } from "vue";
 
 // props
 const props = defineProps({
@@ -27,6 +26,14 @@ const props = defineProps({
     required: true
   }
 })
+
+// emits
+const emit = defineEmits(['deleteClicked'])
+
+// Functions
+function handleDelete() {
+  emit('deleteClicked', props.note.id)
+}
 
 // computed properties
 const characterLength = computed(() => {

@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <Notes v-for="note in notes" :key="note.id" :note="note" />
+    <Notes v-for="note in notes" :key="note.id" :note="note" @delete-clicked="deleteNote" />
 
   </div>
 </template>
@@ -51,6 +51,10 @@ function addNote() {
   notes.value.unshift(note)
   newNote.value = ''
   newNoteRef.value.focus()
+}
+
+function deleteNote(noteID) {
+  notes.value = notes.value.filter(note => { return note.id != noteID })
 }
 </script>
 
